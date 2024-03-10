@@ -9,14 +9,15 @@ import 'package:flutter/material.dart';
 import 'player.dart';
 import 'enemy.dart';
 
-
-class SpaceAdventure extends FlameGame with PanDetector, HasCollisionDetection {
+class SpaceAdventure extends FlameGame
+    with PanDetector, HasCollisionDetection {
   late final Player player;
-
+  ValueNotifier<int> current_score = ValueNotifier(0);
+  bool _gameOver = false;
 
   @override
   FutureOr<void> onLoad() async {
-        final parallax = await loadParallaxComponent(
+    final parallax = await loadParallaxComponent(
       [
         ParallaxImageData('stars_0.png'),
       ],
@@ -40,13 +41,12 @@ class SpaceAdventure extends FlameGame with PanDetector, HasCollisionDetection {
     );
   }
 
-
   @override
   void onPanUpdate(DragUpdateInfo info) {
     player.move(info.delta.global);
   }
 
-    @override
+  @override
   void onPanStart(DragStartInfo info) {
     player.startShooting();
   }
@@ -57,16 +57,40 @@ class SpaceAdventure extends FlameGame with PanDetector, HasCollisionDetection {
   }
 
 
-@override
+  @override
   void update(double dt) {
     super.update(dt);
-   
-    for (final enemy in children.whereType<Enemy>()) {
-      if (player.toRect().overlaps(enemy.toRect())) {    
-        pauseEngine();
-        // Here you might show a game over screen or overlay
-        break;        
+
+    if (!_gameOver) {
+      for (final enemy in children.whereType<Enemy>()) {
+        if (player.toRect().overlaps(enemy.toRect())) {
+          _gameOver = true;
+          pauseEngine();
+          break;
       }
     }
+  }
+  }
+
+  void resetGame() {
+    _gameOver = false;
+    resumeEngine();
+    current_score.value = 0;
+  }
+  
+  bool get isGameOver => _gameOver;
+  bool get isGamePaused => paused;
+  bool get isGamePlaying => !isGamePaused;
+
+  void pauseGame() {
+    pauseEngine();
+  }
+
+  void resumeGame() {
+    resumeEngine();
+  }
+
+  void increaseScore() {
+    current_score.value++;
   }
 }

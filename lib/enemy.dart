@@ -50,6 +50,7 @@ class Enemy extends SpriteComponent
       removeFromParent();
       other.removeFromParent();
       game.add(Explosion(position: position));
+      gameRef.increaseScore();
     }
   }
 }
