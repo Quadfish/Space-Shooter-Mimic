@@ -11,6 +11,7 @@ dependencies:
     sdk: flutter
   flame: ^1.10.0
   cupertino_icons: ^1.0.2
+  flame_tiled: ^1.19.0
 
 dev_dependencies:
   flutter_test:
@@ -23,3 +24,5 @@ flutter:
     - assets/images/player.png
     - assets/images/bullet.png
     - assets/images/enemy.png
+    - assets/images/stars_0.png
+    - assets/images/explosion.gif
