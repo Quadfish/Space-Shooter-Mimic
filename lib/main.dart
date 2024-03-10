@@ -1,12 +1,17 @@
-// main.dart
+import 'package:flame/flame.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
 import 'package:space_race/rocket_game.dart';
+import 'game_over_menu.dart';
 
-void main() {
+void main() async{
+  WidgetsFlutterBinding.ensureInitialized(); 
+  await Flame.device.fullScreen();
+
   runApp(MaterialApp(
     home: HomePage(),
     theme: ThemeData.dark(),
+    debugShowCheckedModeBanner: false,
   ));
 }
 
@@ -19,12 +24,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
   late SpaceAdventure _spaceAdventure;
-  bool _gameOver = false;
 
   @override
   void initState() {
-    _spaceAdventure = SpaceAdventure();
     super.initState();
+    _spaceAdventure = SpaceAdventure();
   }
 
   @override
@@ -33,70 +37,53 @@ class _HomePageState extends State<HomePage> {
       body: Stack(
         children: [
           Positioned.fill(
-            child: GameWidget(game: _spaceAdventure),
+            child: GameWidget<SpaceAdventure>(
+              game: _spaceAdventure,
+              overlayBuilderMap: {
+                GameOverMenu.id: (_, __) => GameOverMenu(game: _spaceAdventure),
+              },
+              initialActiveOverlays: const [],
+            ),
           ),
-          if (_spaceAdventure.isGamePlaying)
-            Align(
-              alignment: Alignment.bottomLeft,
+          Align(
+            alignment: Alignment.topRight,
+            child: Padding(
+              padding: const EdgeInsets.all(10.0), // Add some padding for aesthetics
               child: Row(
+                mainAxisSize: MainAxisSize.min, // Use minimum space
                 children: [
+                  // Score Display
+                  ValueListenableBuilder(
+                    valueListenable: _spaceAdventure.current_score,
+                    builder: (context, int value, child) {
+                      return Text(
+                        "Score: $value",
+                        style: const TextStyle(
+                          fontSize: 24,
+                          fontWeight: FontWeight.bold,
+                          color: Colors.white, // Ensure the text is visible
+                        ),
+                      );
+                    },
+                  ),
+                  const SizedBox(width: 10), // Space between score and icon
+                  // Pause Button
                   IconButton(
                     onPressed: () {
                       setState(() {
                         _spaceAdventure.pauseGame();
                       });
                     },
-                    icon: const Icon(Icons.pause),
-                  ),
-                  ValueListenableBuilder(
-                    valueListenable: _spaceAdventure.current_score,
-                    builder: (context, int value, child) {
-                      return Text(
-                        value.toString(),
-                        style: const TextStyle(
-                          fontSize: 24,
-                          fontWeight: FontWeight.bold,
-                        ),
-                      );
-                    },
+                    icon: const Icon(
+                      Icons.pause,
+                      color: Colors.white, // Ensure the icon is visible
+                      size: 30,
+                    ),
                   ),
                 ],
               ),
             ),
-          if (_spaceAdventure.isGameOver && !_spaceAdventure.isGamePaused)
-            Container(
-              color: Colors.black45,
-              child: Center(
-                child: Column(
-                  mainAxisAlignment: MainAxisAlignment.center,
-                  children: [
-                    const Text(
-                      'GAME OVER!',
-                      style: TextStyle(
-                        color: Colors.white,
-                        fontSize: 48,
-                        fontWeight: FontWeight.bold,
-                      ),
-                    ),
-                    SizedBox(
-                      width: 140,
-                      height: 140,
-                      child: IconButton(
-                        onPressed: () {
-                          setState(() {
-                            _spaceAdventure.resetGame();
-                          });
-                        },
-                        icon: const Icon(
-                          Icons.refresh,
-                          size: 140,
-                        ),
-                      ),
-                    ),
-                  ],
-                ),
-              ),
-            ),
+          ),
           if (_spaceAdventure.isGamePaused && !_spaceAdventure.isGameOver)
             Container(
               color: Colors.black45,

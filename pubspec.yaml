@@ -11,7 +11,10 @@ dependencies:
     sdk: flutter
   flame: ^1.10.0
   cupertino_icons: ^1.0.2
-  flame_tiled: ^1.19.0
+  flame_tiled: 1.18.4
+  hive: ^2.2.3
+  provider: ^6.1.2
+  flutter_carousel_slider: ^1.1.0
 
 dev_dependencies:
   flutter_test:
