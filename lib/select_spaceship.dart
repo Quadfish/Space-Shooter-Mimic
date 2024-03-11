@@ -1,3 +1,4 @@
+// select_spaceship.dart
 import 'package:flutter/material.dart';
 import 'package:space_race/main.dart';
 
@@ -16,12 +17,11 @@ class Spaceship {
 class _SelectSpaceshipScreenState extends State<SelectSpaceshipScreen> {
   int _selectedShipIndex = -1;
 
-  // Sample spaceships data - replace with your actual data and images
+
   List<Spaceship> spaceships = [
     Spaceship(name: "Spaceship 1", imagePath: "assets/images/rocket1.png"),
     Spaceship(name: "Spaceship 2", imagePath: "assets/images/rocket2.png"),
     Spaceship(name: "Spaceship 3", imagePath: "assets/images/rocket3.png"),
-    // Add more spaceships as needed
   ];
 
   @override
@@ -29,7 +29,7 @@ class _SelectSpaceshipScreenState extends State<SelectSpaceshipScreen> {
     return Scaffold(
       backgroundColor: Colors.black,
       appBar: AppBar(
-        title: Text("Select Your Spaceship"),
+        title: const Text("Select Your Spaceship"),
         backgroundColor: Colors.black,
       ),
       body: Column(
@@ -37,11 +37,11 @@ class _SelectSpaceshipScreenState extends State<SelectSpaceshipScreen> {
           Expanded(
             child: GridView.builder(
               padding: const EdgeInsets.all(10),
-              gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                crossAxisCount: 2, // Adjust number of columns
+              gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
+                crossAxisCount: 2, 
                 crossAxisSpacing: 10,
                 mainAxisSpacing: 10,
-                childAspectRatio: 1.0, // Adjust the aspect ratio of the cards
+                childAspectRatio: 1.0, 
               ),
               itemCount: spaceships.length,
               itemBuilder: (context, index) {

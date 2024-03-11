@@ -1,3 +1,4 @@
+// game_over_men
 import 'package:flutter/material.dart';
 import 'package:space_race/main_menu.dart';
 import 'package:space_race/rocket_game.dart';
@@ -6,7 +7,7 @@ class GameOverMenu extends StatelessWidget {
   static const String id = 'GameOverMenu';
   final SpaceAdventure game;
 
-  const GameOverMenu({Key? key, required this.game}) : super(key: key);
+  const GameOverMenu({super.key, required this.game});
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +41,6 @@ class GameOverMenu extends StatelessWidget {
                 game.reset();
                 game.resumeEngine();
               },
-              child: Text(
-                  'RESTART',
-                  style: TextStyle(
-                    color: Colors.black,)
-                ),
                style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.white), // Button color
                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -52,6 +48,11 @@ class GameOverMenu extends StatelessWidget {
                        borderRadius: BorderRadius.circular(18.0),
                      ),
                    ),
+                ),
+              child: const Text(
+                  'RESTART',
+                  style: TextStyle(
+                    color: Colors.black,)
                 ),
             ),
           ),
@@ -66,11 +67,6 @@ class GameOverMenu extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const MainMenu()),
                 );
               },
-              child: Text(
-                  'EXIT',
-                  style: TextStyle(
-                    color: Colors.black,)
-                ),
                style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.white), // Button color
                    shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -78,6 +74,11 @@ class GameOverMenu extends StatelessWidget {
                        borderRadius: BorderRadius.circular(18.0),
                      ),
                    ),
+                ),
+              child: const Text(
+                  'EXIT',
+                  style: TextStyle(
+                    color: Colors.black,)
                 ),
             ),
           ),

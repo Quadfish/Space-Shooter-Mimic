@@ -1,15 +1,15 @@
+// main_menu.dart
 import 'package:flutter/material.dart';
 import 'package:space_race/select_spaceship.dart';
-import 'main.dart'; // Make sure to import your HomePage
 
 class MainMenu extends StatelessWidget {
-  const MainMenu({Key? key}) : super(key: key);
+  const MainMenu({super.key});
 
   @override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Container(
-        decoration: BoxDecoration(
+        decoration: const BoxDecoration(
           image: DecorationImage(
             image: AssetImage('assets/images/background.jpg'), 
             fit: BoxFit.cover, 
@@ -17,8 +17,8 @@ class MainMenu extends StatelessWidget {
         ),
         child: Column(
           children: [
-            Spacer(flex: 2), 
-            Text(
+            const Spacer(flex: 2), 
+            const Text(
               'SPACE ADVENTURE',
               style: TextStyle(
                 fontFamily: 'Sixtyfour',
@@ -33,7 +33,7 @@ class MainMenu extends StatelessWidget {
                 ],
               ),
             ),
-            Spacer(), 
+            const Spacer(), 
             SizedBox(
               width: MediaQuery.of(context).size.width / 3,
               child: ElevatedButton(
@@ -42,12 +42,6 @@ class MainMenu extends StatelessWidget {
                     MaterialPageRoute(builder: (context) => SelectSpaceshipScreen()),
                   );
                 },
-                child: Text(
-                  'PLAY',
-                  style: TextStyle(
-                    color: Colors.black,
-                  ),
-                ),
                 style: ButtonStyle(
                   backgroundColor: MaterialStateProperty.all<Color>(Colors.white),
                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
@@ -56,9 +50,15 @@ class MainMenu extends StatelessWidget {
                     ),
                   ),
                 ),
+                child: const Text(
+                  'PLAY',
+                  style: TextStyle(
+                    color: Colors.black,
+                  ),
+                ),
               ),
             ),
-            Spacer(flex: 3), 
+            const Spacer(flex: 3), 
           ],
         ),
       ),

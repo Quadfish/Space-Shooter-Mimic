@@ -1,3 +1,4 @@
+// main.dart
 import 'package:flame/flame.dart';
 import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
@@ -11,8 +12,8 @@ void main() async{
   await Flame.device.fullScreen();
 
   runApp(MaterialApp(
-    home: MainMenu(),
-    theme: new ThemeData(scaffoldBackgroundColor: Color.fromARGB(255, 0, 0, 0)),
+    home: const MainMenu(),
+    theme: ThemeData(scaffoldBackgroundColor: const Color.fromARGB(255, 0, 0, 0)),
     debugShowCheckedModeBanner: false,
 
   ));
@@ -54,11 +55,10 @@ class _HomePageState extends State<HomePage> {
           Align(
             alignment: Alignment.topRight,
             child: Padding(
-              padding: const EdgeInsets.all(10.0), // Add some padding for aesthetics
+              padding: const EdgeInsets.all(10.0), 
               child: Row(
-                mainAxisSize: MainAxisSize.min, // Use minimum space
+                mainAxisSize: MainAxisSize.min, 
                 children: [
-                  // Score Display
                   ValueListenableBuilder(
                     valueListenable: _spaceAdventure.current_score,
                     builder: (context, int value, child) {
@@ -67,13 +67,12 @@ class _HomePageState extends State<HomePage> {
                         style: const TextStyle(
                           fontSize: 24,
                           fontWeight: FontWeight.bold,
-                          color: Colors.white, // Ensure the text is visible
+                          color: Colors.white, 
                         ),
                       );
                     },
                   ),
-                  const SizedBox(width: 10), // Space between score and icon
-                  // Pause Button
+                  const SizedBox(width: 10), 
                   IconButton(
                     onPressed: () {
                       setState(() {
@@ -83,7 +82,7 @@ class _HomePageState extends State<HomePage> {
                     },
                     icon: const Icon(
                       Icons.pause,
-                      color: Colors.white, // Ensure the icon is visible
+                      color: Colors.white,
                       size: 30,
                     ),
                   ),

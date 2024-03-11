@@ -1,4 +1,4 @@
-
+// bullet.dart
 import 'package:flame/collisions.dart';
 import 'package:flame/components.dart';
 import 'package:flame_audio/flame_audio.dart';
