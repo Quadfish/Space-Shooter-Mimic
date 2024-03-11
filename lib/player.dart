@@ -24,6 +24,7 @@ class Player extends SpriteComponent
     anchor = Anchor.center;
 
     _bulletSpawner = SpawnComponent(
+    
       period: .2,
       selfPositioning: true,
       factory: (index) {
@@ -39,6 +40,8 @@ class Player extends SpriteComponent
     );
 
     game.add(_bulletSpawner);
+
+
   }
 
   void move(Vector2 delta) {
@@ -47,6 +50,7 @@ class Player extends SpriteComponent
 
   void startShooting() {
     _bulletSpawner.timer.start();
+
   }
 
   void stopShooting() {

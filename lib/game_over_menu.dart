@@ -17,14 +17,15 @@ class GameOverMenu extends StatelessWidget {
           const Padding(
             padding: EdgeInsets.symmetric(vertical: 50.0),
             child: Text(
-              'Game Over',
+              'GAME OVER',
               style: TextStyle(
-                fontSize: 50.0,
-                color: Colors.black,
+                fontFamily: 'Sixtyfour',
+                fontSize: 60.0,
+                color: Colors.white,
                 shadows: [
                   Shadow(
-                    blurRadius: 20.0,
-                    color: Colors.white,
+                    blurRadius: 10.0,
+                    color: Colors.black,
                     offset: Offset(0, 0),
                   ),
                 ],
@@ -39,7 +40,19 @@ class GameOverMenu extends StatelessWidget {
                 game.reset();
                 game.resumeEngine();
               },
-              child: const Text('Restart'),
+              child: Text(
+                  'RESTART',
+                  style: TextStyle(
+                    color: Colors.black,)
+                ),
+               style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.white), // Button color
+                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                     RoundedRectangleBorder(
+                       borderRadius: BorderRadius.circular(18.0),
+                     ),
+                   ),
+                ),
             ),
           ),
           SizedBox(
@@ -53,7 +66,19 @@ class GameOverMenu extends StatelessWidget {
                   MaterialPageRoute(builder: (context) => const MainMenu()),
                 );
               },
-              child: const Text('Exit'),
+              child: Text(
+                  'EXIT',
+                  style: TextStyle(
+                    color: Colors.black,)
+                ),
+               style: ButtonStyle(
+                  backgroundColor: MaterialStateProperty.all<Color>(Colors.white), // Button color
+                   shape: MaterialStateProperty.all<RoundedRectangleBorder>(
+                     RoundedRectangleBorder(
+                       borderRadius: BorderRadius.circular(18.0),
+                     ),
+                   ),
+                ),
             ),
           ),
         ],

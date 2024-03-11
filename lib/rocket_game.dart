@@ -46,6 +46,7 @@ class SpaceAdventure extends FlameGame with PanDetector, HasCollisionDetection {
   @override
   void onPanStart(DragStartInfo info) {
     player.startShooting();
+    
   }
 
   @override

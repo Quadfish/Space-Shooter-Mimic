@@ -1,4 +1,5 @@
 import 'package:flame/components.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'rocket_game.dart';
 
 class Explosion extends SpriteAnimationComponent
@@ -14,7 +15,7 @@ class Explosion extends SpriteAnimationComponent
   @override
   Future<void> onLoad() async {
     await super.onLoad();
-
+    FlameAudio.play('boom.mp3', volume: 5);
     animation = await game.loadSpriteAnimation(
       'explosion.gif',
       SpriteAnimationData.sequenced(

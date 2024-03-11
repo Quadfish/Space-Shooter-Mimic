@@ -1,6 +1,8 @@
 import 'package:flame/flame.dart';
+import 'package:flame_audio/flame_audio.dart';
 import 'package:flutter/material.dart';
 import 'package:flame/game.dart';
+import 'package:space_race/main_menu.dart';
 import 'package:space_race/rocket_game.dart';
 import 'game_over_menu.dart';
 
@@ -9,9 +11,10 @@ void main() async{
   await Flame.device.fullScreen();
 
   runApp(MaterialApp(
-    home: HomePage(),
-    theme: ThemeData.dark(),
+    home: MainMenu(),
+    theme: new ThemeData(scaffoldBackgroundColor: Color.fromARGB(255, 0, 0, 0)),
     debugShowCheckedModeBanner: false,
+
   ));
 }
 
@@ -29,6 +32,9 @@ class _HomePageState extends State<HomePage> {
   void initState() {
     super.initState();
     _spaceAdventure = SpaceAdventure();
+    FlameAudio.bgm.initialize();
+    FlameAudio.bgm.play('background.mp3');
+
   }
 
   @override
@@ -72,6 +78,7 @@ class _HomePageState extends State<HomePage> {
                     onPressed: () {
                       setState(() {
                         _spaceAdventure.pauseGame();
+                        FlameAudio.bgm.pause();
                       });
                     },
                     icon: const Icon(
@@ -106,6 +113,7 @@ class _HomePageState extends State<HomePage> {
                         onPressed: () {
                           setState(() {
                             _spaceAdventure.resumeGame();
+                            FlameAudio.bgm.resume();
                           });
                         },
                         icon: const Icon(

@@ -15,6 +15,7 @@ dependencies:
   hive: ^2.2.3
   provider: ^6.1.2
   flutter_carousel_slider: ^1.1.0
+  flame_audio: ^1.3.3
 
 dev_dependencies:
   flutter_test:
@@ -29,3 +30,19 @@ flutter:
     - assets/images/enemy.png
     - assets/images/stars_0.png
     - assets/images/explosion.gif
+    - assets/audio/background.mp3
+    - assets/audio/bullet.mp3
+    - assets/audio/boom.mp3
+    - assets/images/background.jpg
+    - assets/images/rocket1.png
+    - assets/images/rocket2.png
+    - assets/images/rocket3.png
+    
+  fonts:
+    - family: BungeeInline
+      fonts:
+        - asset: assets/fonts/BungeeInline/BungeeInline-Regular.ttf
+
+    - family: Sixtyfour
+      fonts:
+        - asset: assets/fonts/Sixtyfour/Sixtyfour-Regular.ttf
